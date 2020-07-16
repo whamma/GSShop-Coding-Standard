@@ -79,23 +79,7 @@ PHP 코드는 BOM (Byte Order Mark) UTF-8 만 사용해야합니다.
  
  예제 :
  
- '''php
- <?php
-// side effect: change ini settings
-ini_set('error_reporting', E_ALL);
 
-// side effect: loads a file
-include "file.php";
-
-// side effect: generates output
-echo "<html>\n";
-
-// declaration
-function foo()
-{
-    // function body
-}
-'''
 
 ### **PSR-2(Coding Style Guide)**
 
