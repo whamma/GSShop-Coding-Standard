@@ -4,7 +4,7 @@
 ## PHP
 [PSR-1(Basic Coding Standard)](#psr-1basic-coding-standard)
 
-[1. Overview](#1overview)
+[1. Overview](#1-overview)
 
 [2.1 PHP 태그](#21-php-태그)
 
