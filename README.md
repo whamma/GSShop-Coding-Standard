@@ -1,6 +1,10 @@
 # GSShop-Coding-Standard
 
 ## Contents
+## PHP
+[PSR-1(Basic Coding Standard)](#psr-basic-coding-standard)
+
+## laravel
 [단일 책임 원칙](#단일-책임-원칙)
 
 [모델은 무겁게, 컨트롤러는 가볍게](#모델은-무겁게-컨트롤러는-가볍게)
@@ -36,7 +40,6 @@
 [날짜를 표준 형식으로 저장합니다. accessors(get), mutators(set)을 사용해 날짜 형식을 수정합니다.](#날짜를-표준-형식으로-저장합니다-accessorsget-mutatorsset을-사용해-날짜-형식을-수정합니다)
 
 [또 다른 좋은 사례](#또-다른-좋은-사례)
-
 ### **단일 책임 원칙**
 
 클래스와 메서드는 하나의 책임만 있어야 합니다.
