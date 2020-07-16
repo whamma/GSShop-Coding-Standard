@@ -27,6 +27,18 @@
 
 [2.1 Basic Coding Standard](#21-basic-coding-standard)
 
+[2.2 Files](#22-files)
+
+[2.3 Lines](#23-lines)
+
+[2.4 Indenting](#24-indenting)
+
+[2.5 Keywords and True/False/Null](#25-keywords-and-truefalsenull)
+
+[2.6 Namespace and Use Declarations](#26-namespace-and-use-declarations)
+
+[2.7 Classes, Properties, and Methods](#27-classes-properties-and-methods)
+
 [3. Control Structures](#3-control-structures)
 
 [PSR-3(Basic Coding Standard)](#psr-3logger-interface)
