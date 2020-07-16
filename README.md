@@ -1,10 +1,10 @@
-# GSShop-Coding-Standard
+# Coding-Standard
 
 ## Contents
 ## PHP
 [PSR-1(Basic Coding Standard)](#psr-1basic-coding-standard)
 
-[1. Overview](#1-overview)
+[1. Overview](#1-overviewpsr-1)
 
 [2. Files](#2-files)
 
@@ -21,6 +21,8 @@
 [PSR-2(Coding Style Guide)](#psr-2coding-style-guide)
 
 [1. Overview](#1-overviewpsr-2)
+
+[2. General](#2-general)
 
 [PSR-3(Basic Coding Standard)](#psr-3logger-interface)
 
@@ -65,7 +67,7 @@
 
 ### **PSR-1(Basic Coding Standard)**
 
-### 1. Overview
+### 1. Overview(PSR-1)
 * 파일은 태그 <?php와 <?=태그만 사용해야 합니다.
 * 파일은 PHP 코드에 BOM없이 UTF-8 만 사용해야합니다.
 * 파일은 기호 (클래스, 함수, 상수 등) 를 선언 하거나 side effects (예 : 출력 생성, .ini 설정 변경 등)을 이야기해야하지만 둘 다 수행해서는 안됩니다.
