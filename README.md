@@ -6,6 +6,8 @@
 
 [1. Overview](#1-overview)
 
+[2. Files](#2-files)
+
 [2.1 PHP 태그](#21-php-태그)
 
 [2.2 문자 인코딩](#22-문자-인코딩)
