@@ -77,8 +77,92 @@ PHP 코드는 BOM (Byte Order Mark) UTF-8 만 사용해야합니다.
 
  * "side effects"에는 출력 생성, 명시 적 사용 require또는 include의 외부 서비스 연결, ini 설정 수정, 오류 또는 예외 처리, 전역 변수 또는 정적 변수 [수정, 파일 읽기 또는 쓰기] 등 이 포함되지만 이에 국한 되지는 않습니다 . 다음은 선언과 side effects가 모두 포함 된 파일의 예제입니다.
  
- 예제 :
+예제 :
  
+ ```php
+<?php
+// side effect: change ini settings
+ini_set('error_reporting', E_ALL);
+
+// side effect: loads a file
+include "file.php";
+
+// side effect: generates output
+echo "<html>\n";
+
+// declaration
+function foo()
+{
+    // function body
+}
+```
+다음 예제는 side effects가 없는 선언 파일입니다.
+
+예제 : 
+
+```php
+<?php
+// declaration
+function foo()
+{
+    // function body
+}
+
+// conditional declaration is *not* a side effect
+if (! function_exists('bar')) {
+    function bar()
+    {
+        // function body
+    }
+}
+```
+
+### 3. Namespace and Class Names
+#### 3.1 네임 스페이스와 클래스는 반드시 "autoloading" PSR [ PSR-0 , PSR-4 ]을 따라야합니다.
+이것은 각 클래스가 하나의 파일에 있고 적어도 한 수준의 네임 스페이스, 즉 최상위 벤더 이름에 있음을 의미합니다. 클래스 이름은에서 선언되어야 StudlyCaps합니다. PHP 5.3 및 이후 버전 용으로 작성된 코드는 정식 네임 스페이스를 사용해야합니다.
+
+예제:
+
+```php
+<?php
+// PHP 5.3 and later:
+namespace Vendor\Model;
+
+class Foo
+{
+}
+```
+php ver.5.2.x 로 작성된 코드는 클래스 이름에 Vendor_ 접두어의 의사 네임 스페이스 규칙을 사용해야합니다.
+
+```php
+<?php
+// PHP 5.2.x and earlier:
+class Vendor_Model_Foo
+{
+}
+```
+
+### 4. Class Constants, Properties, and Methods
+"Class"라는 용어는 모든 Class, interfaces 및 특성을 나타냅니다.
+#### 4.1 상수
+클래스 상수는 밑줄 구분 기호로 모든 대문자에서 선언되어야 합니다.
+
+예제 : 
+
+```php
+<?php
+namespace Vendor\Model;
+
+class Foo
+{
+    const VERSION = '1.0';
+    const DATE_APPROVED = '2012-06-01';
+}
+```
+
+#### 4.2. 특성 본 가이드는 $StudlyCaps, $camelCass, $under_score 속성 이름의 사용에 관한 권고를 의도적으로 회피한다.
+어떤 명명 규칙을 사용하든 적절한 범위 내에서 일관성 있게 적용해야 한다. 이 범위는 공급업체 수준, 패키지 수준, 클래스 수준 또는 방법 수준일 수 있다.
+#### 4.3. 방법 Method name은 반드시 camelCase()로 선언해야 합니다.
 
 
 ### **PSR-2(Coding Style Guide)**
