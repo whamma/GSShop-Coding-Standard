@@ -24,6 +24,8 @@
 
 [2. General](#2-general)
 
+[3. Control Structures](#3-control-structures)
+
 [PSR-3(Basic Coding Standard)](#psr-3logger-interface)
 
 [PSR-4(Basic Coding Standard)](#psr-4autoloader)
@@ -401,7 +403,7 @@ $foo->bar(
     $muchLongerArgument
 );
 ```
-### 3.Control Structures
+### 3. Control Structures
  > 제어 구조의 일반적인 스타일 규칙은 다음과 같습니다.
   * 제어 구조 키워드 다음에 하나의 공백이 있어야합니다
   * 여는 괄호 뒤에 공백이 있으면 안됩니다 (MUST NOT).
