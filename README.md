@@ -8,9 +8,9 @@
 
 [2.1 PHP 태그](#21-php-태그)
 
-[2.2 문자 인코딩](#21-문자-인코딩)
+[2.2 문자 인코딩](#22-문자-인코딩)
 
-[2.1 Side Effects](#21-side-effects)
+[2.3 Side Effects](#23-side-effects)
 
 [PSR-2(Coding Style Guide)](#psr-2coding-style-guide)
 
