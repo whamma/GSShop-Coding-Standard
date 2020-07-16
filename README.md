@@ -2,7 +2,7 @@
 
 ## Contents
 ## PHP
-[PSR-1(Basic Coding Standard)](#psr-basic-coding-standard)
+[PSR-1(Basic Coding Standard)](#psr-1basic-coding-standard)
 
 [하나 둘](oe-two)
 
