@@ -20,7 +20,7 @@
 
 [PSR-2(Coding Style Guide)](#psr-2coding-style-guide)
 
-[1. Overview(PSR-2)](#1-overview(psr-2))
+[1. Overview](#1-overviewpsr-2)
 
 [PSR-3(Basic Coding Standard)](#psr-3logger-interface)
 
