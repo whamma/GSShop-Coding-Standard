@@ -205,6 +205,7 @@ class Foo
 [🔝 목차로 돌아가기](#contents)
 ### **PSR-2(Coding Style Guide)**
  PSR-1을 기본으로 추가적인 요구사항들을 가이드 한다.
+ 이 문서에서 핵심 단어는 반드시 "필수", "요구하지 말아야한다", "해야한다", "하지 말아야한다", "하지 마라", "권장하지 않는다", "할 수도있다", "선택 가능하다"등이다. (“MUST”, “MUST NOT”, “REQUIRED”, “SHALL”, “SHALL NOT”, “SHOULD”, “SHOULD NOT”, “RECOMMENDED”, “MAY”,) RFC 2119에 설명 된 대로 해석되어야 합니다.
 ### 1. Overview(PSR-2)
 * 코드는 반드시 "코딩 스타일 가이드"인 PSR [ PSR-1 ]을 따라야합니다.
 * 코드는 탭이 아닌 들여 쓰기에 4 칸을 사용해야합니다.
