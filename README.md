@@ -20,7 +20,7 @@
 
 [PSR-2(Coding Style Guide)](#psr-2coding-style-guide)
 
-[1. Overview](#1-overview(pser-2))
+[1. Overview](#1-overview(psr-2))
 
 [PSR-3(Basic Coding Standard)](#psr-3logger-interface)
 
@@ -184,7 +184,7 @@ class Foo
 [🔝 목차로 돌아가기](#contents)
 ### **PSR-2(Coding Style Guide)**
  PSR-1을 기본으로 추가적인 요구사항들을 가이드 한다.
-### 1. Overview
+### 1. Overview(PSR-2)
 * 코드는 반드시 "코딩 스타일 가이드"인 PSR [ PSR-1 ]을 따라야합니다.
 * 코드는 탭이 아닌 들여 쓰기에 4 칸을 사용해야합니다.
 * 라인 길이에 엄격한 제한이 있어서는 안됩니다. 소프트 한도는 120 자 여야합니다 (MUST). 줄은 80 자 이하 여야합니다 (권장하지 않는다).
