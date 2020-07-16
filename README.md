@@ -53,7 +53,7 @@
 * 파일은 PHP 코드에 BOM없이 UTF-8 만 사용해야합니다.
 * 파일은 기호 (클래스, 함수, 상수 등) 를 선언 하거나 side effects (예 : 출력 생성, .ini 설정 변경 등)을 이야기해야하지만 둘 다 수행해서는 안됩니다.
 * 네임 스페이스와 클래스는 반드시 "autoloading" PSR [ PSR-0 , PSR-4 ]을 따라야합니다.
-* StudlyCaps에서 클래스 이름을 반드시 선언해야합니다.
+* 클래스 이름은 반드시 StudlyCaps를 따라야 한다.
 * 클래스 상수는 모두 대문자로 밑줄 구분 기호로 선언해야합니다.
 * 메서드 이름은 반드시 camelCase에서 선언해야합니다.
 ### 2. Files
@@ -166,6 +166,7 @@ class Foo
 
 
 ### **PSR-2(Coding Style Guide)**
+###
 
 ### **PSR-3(Basic Coding Standard)**
 
