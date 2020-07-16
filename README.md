@@ -118,8 +118,8 @@ if (! function_exists('bar')) {
 ```
 
 ### 3. Namespace and Class Names
-#### 3.1 네임 스페이스와 클래스는 반드시 "autoloading" PSR [ PSR-0 , PSR-4 ]을 따라야합니다.
-이것은 각 클래스가 하나의 파일에 있고 적어도 한 수준의 네임 스페이스, 즉 최상위 벤더 이름에 있음을 의미합니다. 클래스 이름은에서 선언되어야 StudlyCaps합니다. PHP 5.3 및 이후 버전 용으로 작성된 코드는 정식 네임 스페이스를 사용해야합니다.
+ #### 3.1 네임 스페이스와 클래스는 반드시 "autoloading" PSR [ PSR-0 , PSR-4 ]을 따라야합니다.
+  * 이것은 각 클래스가 하나의 파일에 있고 적어도 한 수준의 네임 스페이스, 즉 최상위 벤더 이름에 있음을 의미합니다. 클래스 이름은에서 선언되어야 StudlyCaps합니다. PHP 5.3 및 이후 버전 용으로 작성된 코드는 정식 네임 스페이스를 사용해야합니다.
 
 예제:
 
@@ -143,9 +143,9 @@ class Vendor_Model_Foo
 ```
 
 ### 4. Class Constants, Properties, and Methods
-"Class"라는 용어는 모든 Class, interfaces 및 특성을 나타냅니다.
-#### 4.1 상수
-클래스 상수는 밑줄 구분 기호로 모든 대문자에서 선언되어야 합니다.
+ "Class"라는 용어는 모든 Class, interfaces 및 특성을 나타냅니다.
+ #### 4.1 상수
+  * 클래스 상수는 밑줄 구분 기호로 모든 대문자에서 선언되어야 합니다.
 
 예제 : 
 
@@ -160,13 +160,13 @@ class Foo
 }
 ```
 
-#### 4.2. 특성 본 가이드는 $StudlyCaps, $camelCass, $under_score 속성 이름의 사용에 관한 권고를 의도적으로 회피한다.
-어떤 명명 규칙을 사용하든 적절한 범위 내에서 일관성 있게 적용해야 한다. 이 범위는 공급업체 수준, 패키지 수준, 클래스 수준 또는 방법 수준일 수 있다.
-#### 4.3. 방법 Method name은 반드시 camelCase()로 선언해야 합니다.
+ #### 4.2. 특성 본 가이드는 $StudlyCaps, $camelCass, $under_score 속성 이름의 사용에 관한 권고를 의도적으로 회피한다.
+  * 어떤 명명 규칙을 사용하든 적절한 범위 내에서 일관성 있게 적용해야 한다. 이 범위는 공급업체 수준, 패키지 수준, 클래스 수준 또는 방법 수준일 수 있다.
+ #### 4.3. 방법 Method name은 반드시 camelCase()로 선언해야 합니다.
 
 
 ### **PSR-2(Coding Style Guide)**
-PSR-1을 기본으로 추가적인 요구사항들을 가이드 한다.
+ PSR-1을 기본으로 추가적인 요구사항들을 가이드 한다.
 ### 1. Overview
 * 코드는 반드시 "코딩 스타일 가이드"인 PSR [ PSR-1 ]을 따라야합니다.
 * 코드는 탭이 아닌 들여 쓰기에 4 칸을 사용해야합니다.
@@ -210,12 +210,85 @@ class Foo extends Bar implements FooInterface
 ```
 
 ### 2. General
-#### 1.Basic Coding Standard
- * 코드는 PSR-1에 설명 된 모든 규칙을 따라야합니다 .
-#### 2.Files
- * 모든 PHP 파일은 Unix LF (linefeed) 줄 끝을 사용해야합니다.
- * 모든 PHP 파일은 하나의 빈 줄로 끝나야합니다.
- * 닫기 ?> 태그는 PHP 만 포함 된 파일에서 생략해야합니다 (MUST).
+ #### 2.1.Basic Coding Standard
+  * 코드는 PSR-1에 설명 된 모든 규칙을 따라야합니다 .
+ #### 2.2.Files
+  * 모든 PHP 파일은 Unix LF (linefeed) 줄 끝을 사용해야합니다.
+  * 모든 PHP 파일은 하나의 빈 줄로 끝나야합니다.
+  * 닫기 ?> 태그는 PHP 만 포함 된 파일에서 생략해야합니다 (MUST).
+ #### 2.3.Lines
+  * 라인 길이에 엄격한 제한이 있어서는 안됩니다.
+  * 줄 길이에 대한 소프트 제한은 120 자 여야합니다. 자동화 된 스타일 체커는 반드시 경고해야하지만 소프트 한도에서 오류를 나타내지 않아야합니다.
+  * 행은 80자를 넘지 않아야합니다 (SHOULD NOT). 그보다 긴 행은 각각 80 문자 이하의 여러 행으로 나눠 져야합니다 (SHOULD).
+  * 비어 있지 않은 줄 끝에는 공백 문자가 없어야합니다.
+  * 가독성을 높이고 관련 코드 블록을 나타 내기 위해 빈 줄을 추가 할 수 있습니다 (MAY).
+  * 한 줄에 하나 이상의 문장이 있어서는 안됩니다.
+ #### 2.4.Indenting
+  * 코드는 반드시 4 칸의 들여 쓰기를 사용해야하며, 들여 쓰기에는 탭을 사용하지 않아야합니다.
+  * Nb : 공백만을 사용하고 탭과 공백을 섞지 않으면, diff, 패치, 히스토리 및 주석 문제를 피할 수 있습니다. 공백을 사용하면 행간 정렬을 위해 세분화 된 하위 들여 쓰기를 쉽게 삽입 할 수 있습니다.
+ #### 2.5.Keywords and True/False/Null
+  * PHP 키워드 는 소문자 여야합니다. PHP 상수 true,, false및 null은 소문자 여야합니다.
+ #### 2.6.Namespace and Use Declarations
+  * 존재할 때 namespace선언 다음에 빈 줄이 하나 있어야합니다.
+  * 이 use선언 이 존재하면 모든 선언은 반드시 선언을 따라야합니다 namespace.
+  * use선언 당 하나의 키워드가 있어야합니다.
+  * use블록 다음에 빈 줄이 하나 있어야합니다.
+ #### 2.7.Classes, Properties, and Methods
+  * 클래스는 객체의 상태를 나타내는 필드(field)와 객체의 행동을 나타내는 메소드(method)로 구성됩니다. 즉, 필드(field)란 클래스에 포함된 변수(variable)를 의미합니다.
+  * 메소드(method)란 어떠한 특정 작업을 수행하기 위한 명령문의 집합이라 할 수 있습니다
+  2.7.1. Extends and Implements
+   * extends및 implements키워드는 클래스 이름과 같은 줄에 선언해야합니다. 해당 클래스의 여는 중괄호는 자체 줄에 있어야합니다. 클래스의 닫는 중괄호는 본문 뒤의 다음 줄로 가야합니다. 
+  
+ 예제 :
+
+```php
+<?php
+namespace Vendor\Package;
+
+use FooClass;
+use BarClass as Bar;
+use OtherVendor\OtherPackage\BazClass;
+
+class ClassName extends ParentClass implements \ArrayAccess, \Countable
+{
+    // constants, properties, methods
+}
+```
+목록은 implements 각각의 후속 행 일단 들여되는 여러 줄에 걸쳐 분할 될 수있다. 그렇게 할 때 목록의 첫 번째 항목은 다음 줄에 있어야하며 한 줄에 하나의 인터페이스만 있어야합니다.
+
+예제 :
+
+```php
+<?php
+namespace Vendor\Package;
+
+use FooClass;
+use BarClass as Bar;
+use OtherVendor\OtherPackage\BazClass;
+
+class ClassName extends ParentClass implements
+    \ArrayAccess,
+    \Countable,
+    \Serializable
+{
+    // constants, properties, methods
+}
+```
+  2.7.2.Properties
+   * 모든 속성에서 가시성을 반드시 선언해야합니다. var키워드는 속성을 선언하는 데 사용되어서는 안된다. 명령문마다 하나 이상의 속성이 선언되어서는 안됩니다. 프로퍼티 이름은 보호 된 프라이빗 가시성 또는 프라이빗 가시성을 나타 내기 위해 하나의 밑줄로 접두어를 사용해서는 안됩니다 (SHOULD NOT). 속성 선언은 다음과 같습니다.
+   
+   예제:
+   
+   ```php
+<?php
+namespace Vendor\Package;
+
+class ClassName
+{
+    public $foo = null;
+}
+```
+
  
 ### **PSR-3(Basic Coding Standard)**
 
