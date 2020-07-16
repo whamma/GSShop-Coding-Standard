@@ -3,16 +3,11 @@
 ## Contents
 ## PHP
 [PSR-1(Basic Coding Standard)](#psr-1basic-coding-standard)
-
-[하나 둘](oe-two)
-
-
-
+[PSR-2(Coding Style Guide)](#psr-2coding-style-guide)
+[PSR-3(Basic Coding Standard)](#psr-3logger-interface)
+[PSR-4(Basic Coding Standard)](#psr-4autoloader)
 
 
-#하나 둘
-### **PSR-1(Basic Coding Standard)**
-#PSR-1(Basic Coding Standard)
 ## laravel
 [단일 책임 원칙](#단일-책임-원칙)
 
@@ -49,6 +44,10 @@
 [날짜를 표준 형식으로 저장합니다. accessors(get), mutators(set)을 사용해 날짜 형식을 수정합니다.](#날짜를-표준-형식으로-저장합니다-accessorsget-mutatorsset을-사용해-날짜-형식을-수정합니다)
 
 [또 다른 좋은 사례](#또-다른-좋은-사례)
+### **PSR-1(Basic Coding Standard)**
+### **PSR-2(Coding Style Guide)**
+### **PSR-3(Basic Coding Standard)**
+### **PSR-4(Basic Coding Standard)**
 ### **단일 책임 원칙**
 
 클래스와 메서드는 하나의 책임만 있어야 합니다.
