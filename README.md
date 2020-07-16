@@ -11,7 +11,10 @@
 [2.2 문자 인코딩](#22-문자-인코딩)
 
 [2.3 Side Effects](#23-side-effects)
+
 [3. Namespace and Class Names](#3-namespace-and-class-names)
+
+[4. Class Constants, Properties, and Methods](#4-class-constants-properties-and-methods)
 
 [PSR-2(Coding Style Guide)](#psr-2coding-style-guide)
 
