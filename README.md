@@ -25,6 +25,8 @@
 
 [2. General](#2-general)
 
+[2.1 Basic Coding Standard](#21-basic-coding-standard)
+
 [3. Control Structures](#3-control-structures)
 
 [PSR-3(Basic Coding Standard)](#psr-3logger-interface)
@@ -232,34 +234,34 @@ class Foo extends Bar implements FooInterface
 ```
 
 ### 2. General
- #### 2.1.Basic Coding Standard
+ #### 2.1 Basic Coding Standard
   * 코드는 PSR-1에 설명 된 모든 규칙을 따라야합니다 .
- #### 2.2.Files
+ #### 2.2 Files
   * 모든 PHP 파일은 Unix LF (linefeed) 줄 끝을 사용해야합니다.
   * 모든 PHP 파일은 하나의 빈 줄로 끝나야합니다.
   * 닫기 ?> 태그는 PHP 만 포함 된 파일에서 생략해야합니다 (MUST).
- #### 2.3.Lines
+ #### 2.3 Lines
   * 라인 길이에 엄격한 제한이 있어서는 안됩니다.
   * 줄 길이에 대한 소프트 제한은 120 자 여야합니다. 자동화 된 스타일 체커는 반드시 경고해야하지만 소프트 한도에서 오류를 나타내지 않아야합니다.
   * 행은 80자를 넘지 않아야합니다 (SHOULD NOT). 그보다 긴 행은 각각 80 문자 이하의 여러 행으로 나눠 져야합니다 (SHOULD).
   * 비어 있지 않은 줄 끝에는 공백 문자가 없어야합니다.
   * 가독성을 높이고 관련 코드 블록을 나타 내기 위해 빈 줄을 추가 할 수 있습니다 (MAY).
   * 한 줄에 하나 이상의 문장이 있어서는 안됩니다.
- #### 2.4.Indenting
+ #### 2.4 Indenting
   * 코드는 반드시 4 칸의 들여 쓰기를 사용해야하며, 들여 쓰기에는 탭을 사용하지 않아야합니다.
   * Nb : 공백만을 사용하고 탭과 공백을 섞지 않으면, diff, 패치, 히스토리 및 주석 문제를 피할 수 있습니다. 공백을 사용하면 행간 정렬을 위해 세분화 된 하위 들여 쓰기를 쉽게 삽입 할 수 있습니다.
- #### 2.5.Keywords and True/False/Null
+ #### 2.5 Keywords and True/False/Null
   * PHP 키워드 는 소문자 여야합니다. PHP 상수 true,, false및 null은 소문자 여야합니다.
- #### 2.6.Namespace and Use Declarations
+ #### 2.6 Namespace and Use Declarations
   * 존재할 때 namespace선언 다음에 빈 줄이 하나 있어야합니다.
   * 이 use선언 이 존재하면 모든 선언은 반드시 선언을 따라야합니다 namespace.
   * use선언 당 하나의 키워드가 있어야합니다.
   * use블록 다음에 빈 줄이 하나 있어야합니다.
- #### 2.7.Classes, Properties, and Methods
+ #### 2.7 Classes, Properties, and Methods
   * 클래스는 객체의 상태를 나타내는 필드(field)와 객체의 행동을 나타내는 메소드(method)로 구성됩니다. 즉, 필드(field)란 클래스에 포함된 변수(variable)를 의미합니다.
   * 메소드(method)란 어떠한 특정 작업을 수행하기 위한 명령문의 집합이라 할 수 있습니다
  
-  2.7.1. Extends and Implements
+  2.7.1 Extends and Implements
    * extends및 implements키워드는 클래스 이름과 같은 줄에 선언해야합니다. 해당 클래스의 여는 중괄호는 자체 줄에 있어야합니다. 클래스의 닫는 중괄호는 본문 뒤의 다음 줄로 가야합니다. 
   
  예제 :
@@ -297,7 +299,7 @@ class ClassName extends ParentClass implements
     // constants, properties, methods
 }
 ```
-  2.7.2.Properties
+  2.7.2 Properties
    * 모든 속성에서 가시성을 반드시 선언해야합니다. var키워드는 속성을 선언하는 데 사용되어서는 안된다. 명령문마다 하나 이상의 속성이 선언되어서는 안됩니다. 프로퍼티 이름은 보호 된 프라이빗 가시성 또는 프라이빗 가시성을 나타 내기 위해 하나의 밑줄로 접두어를 사용해서는 안됩니다 (SHOULD NOT). 속성 선언은 다음과 같습니다.
    
    예제:
@@ -312,7 +314,7 @@ class ClassName
 }
 ```
 
-  2.7.3.Methods
+  2.7.3 Methods
    * 모든 메소드에서 가시성을 선언해야합니다 (MUST). 메소드 이름은 보호되거나 개인적인 가시성을 나타 내기 위해 하나의 밑줄로 접두어를해서는 안됩니다 (SHOULD NOT). 메서드 이름은 메서드 이름 다음에 공백으로 선언하면 안됩니다 (MUST NOT). 여는 중괄호는 반드시 자신의 줄에 있어야하며 닫는 중괄호는 반드시 그 다음 줄에 있어야합니다. 여는 괄호 뒤에 공백이 있으면 안되며 닫는 괄호 앞에 공백이 있어서는 안됩니다.
    >메소드 선언은 다음과 같습니다. 괄호, 쉼표, 공백 및 중괄호의 배치에 유의하십시오.
   
@@ -328,7 +330,7 @@ class ClassName
 }
 ```
 
-  2.7.4.Method Arguments
+  2.7.4 Method Arguments
    * 인수 목록에서 각 쉼표 앞에 공백이 있으면 안되며 각 쉼표 뒤에 하나의 공백이 있어야합니다. 디폴트 값을 가진 메소드 인수는 인수 목록의 끝에 와야합니다 (MUST).
 
 예제:
@@ -366,7 +368,7 @@ class ClassName
     }
 }
 ```
-  2.7.5.abstract, final, and static
+  2.7.5 abstract, final, and static
    * 존재하는 경우, abstract및 final선언은 가시성 선언 앞에 와야합니다 (MUST). 현재 static선언이 가시성 선언 뒤에 와야합니다.
   ```php
 <?php
@@ -385,7 +387,7 @@ abstract class ClassName
 }
 ```
 
-  2.7.6.Method and Function Calls
+  2.7.6 Method and Function Calls
    * 메서드 나 함수 호출을 할 때 메서드 나 함수 이름과 여는 괄호 사이에 공백이 없어야합니다. 여는 괄호 뒤에 공백이 있으면 안되며 닫는 괄호 앞에 공백이 있어서는 안됩니다. 인수 목록에서 각 쉼표 앞에 공백이 있으면 안되며 각 쉼표 뒤에 하나의 공백이 있어야합니다.
 
 ```php
