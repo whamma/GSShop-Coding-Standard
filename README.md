@@ -48,6 +48,35 @@
 [또 다른 좋은 사례](#또-다른-좋은-사례)
 ### **PSR-1(Basic Coding Standard)**
 
+### 1. Overview
+* 파일은 태그 <?php와 <?=태그만 사용해야 합니다.
+* 파일은 PHP 코드에 BOM없이 UTF-8 만 사용해야합니다.
+* 파일은 기호 (클래스, 함수, 상수 등) 를 선언 하거나 side effects (예 : 출력 생성, .ini 설정 변경 등)을 이야기해야하지만 둘 다 수행해서는 안됩니다.
+* 네임 스페이스와 클래스는 반드시 "autoloading" PSR [ PSR-0 , PSR-4 ]을 따라야합니다.
+* StudlyCaps에서 클래스 이름을 반드시 선언해야합니다.
+* 클래스 상수는 모두 대문자로 밑줄 구분 기호로 선언해야합니다.
+* 메서드 이름은 반드시 camelCase에서 선언해야합니다.
+### 2. Files
+2.1 PHP 태그
+PHP 코드는 긴 태그 또는 짧은 에코 태그를 사용해야합니다.
+다른 태그 변형을 사용해서는 안됩니다. __<?php ?><?= ?>__
+
+2.2 문자 인코딩
+PHP 코드는 BOM (Byte Order Mark) UTF-8 만 사용해야합니다.
+
+2.3 Side Effects
+빈 구문이 아니라면 반드시 하나의 side effect를 가져야합니다.
+
+>"All non null statements shall potentially have a side effect"
+>>_"실행 중에 어떤 객체를 접근해서 변화가 일어나는 행위"
+"Accessing an object designated by a volatile lvalue, modifying an object, calling a library I/O function, or calling a function that does any of those operations are all side effects, which are changes in the state of the execution environment."_
+
+ * 파일은 새로운 기호 (클래스, 함수, 상수 등)를 선언하고 다른 부작용을 일으키지 않아야하며, side effects가 있는 로직을 실행해야하지만 두 가지를 모두 실행해서는 안된다.
+
+ * "side effects"는 단지 클래스, 함수, 상수 등을 선언하는 것과 직접적으로 관련이없는 로직의 실행을 파일을 포함하는 것을 의미합니다 .
+
+ * "side effects"에는 출력 생성, 명시 적 사용 require또는 include의 외부 서비스 연결, ini 설정 수정, 오류 또는 예외 처리, 전역 변수 또는 정적 변수 [수정, 파일 읽기 또는 쓰기] 등 이 포함되지만 이에 국한 되지는 않습니다 . 다음은 선언과 side effects가 모두 포함 된 파일의 예제입니다.
+
 ### **PSR-2(Coding Style Guide)**
 
 ### **PSR-3(Basic Coding Standard)**
