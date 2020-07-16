@@ -57,45 +57,45 @@
 * 클래스 상수는 모두 대문자로 밑줄 구분 기호로 선언해야합니다.
 * 메서드 이름은 반드시 camelCase에서 선언해야합니다.
 ### 2. Files
-#### 2.1 PHP 태그
-PHP 코드는 긴 태그 또는 짧은 에코 태그를 사용해야합니다.
-다른 태그 변형을 사용해서는 안됩니다. <?php ?><?= ?>
+ #### 2.1 PHP 태그
+  * PHP 코드는 긴 태그 또는 짧은 에코 태그를 사용해야합니다.
+  * 다른 태그 변형을 사용해서는 안됩니다. <?php ?><?= ?>
 
-#### 2.2 문자 인코딩
-PHP 코드는 BOM (Byte Order Mark) UTF-8 만 사용해야합니다.
+ #### 2.2 문자 인코딩
+  * PHP 코드는 BOM (Byte Order Mark) UTF-8 만 사용해야합니다.
 
-#### 2.3 Side Effects
-빈 구문이 아니라면 반드시 하나의 side effect를 가져야합니다.
+ #### 2.3 Side Effects
+  * 빈 구문이 아니라면 반드시 하나의 side effect를 가져야합니다.
 
->"All non null statements shall potentially have a side effect"
->>_"실행 중에 어떤 객체를 접근해서 변화가 일어나는 행위"
-"Accessing an object designated by a volatile lvalue, modifying an object, calling a library I/O function, or calling a function that does any of those operations are all side effects, which are changes in the state of the execution environment."_
+  >"All non null statements shall potentially have a side effect"
+  >>_"실행 중에 어떤 객체를 접근해서 변화가 일어나는 행위"
+  "Accessing an object designated by a volatile lvalue, modifying an object, calling a library I/O function, or calling a function that does any of those operations are all side effects, which are changes in the state of the execution environment."_
 
- * 파일은 새로운 기호 (클래스, 함수, 상수 등)를 선언하고 다른 부작용을 일으키지 않아야하며, side effects가 있는 로직을 실행해야하지만 두 가지를 모두 실행해서는 안된다.
+   * 파일은 새로운 기호 (클래스, 함수, 상수 등)를 선언하고 다른 부작용을 일으키지 않아야하며, side effects가 있는 로직을 실행해야하지만 두 가지를 모두 실행해서는 안된다.
 
- * "side effects"는 단지 클래스, 함수, 상수 등을 선언하는 것과 직접적으로 관련이없는 로직의 실행을 파일을 포함하는 것을 의미합니다 .
+   * "side effects"는 단지 클래스, 함수, 상수 등을 선언하는 것과 직접적으로 관련이없는 로직의 실행을 파일을 포함하는 것을 의미합니다 .
 
- * "side effects"에는 출력 생성, 명시 적 사용 require또는 include의 외부 서비스 연결, ini 설정 수정, 오류 또는 예외 처리, 전역 변수 또는 정적 변수 [수정, 파일 읽기 또는 쓰기] 등 이 포함되지만 이에 국한 되지는 않습니다 . 다음은 선언과 side effects가 모두 포함 된 파일의 예제입니다.
+   * "side effects"에는 출력 생성, 명시 적 사용 require또는 include의 외부 서비스 연결, ini 설정 수정, 오류 또는 예외 처리, 전역 변수 또는 정적 변수 [수정, 파일 읽기 또는 쓰기] 등 이 포함되지만 이에 국한 되지는 않습니다 . 다음은 선언과 side effects가 모두 포함 된 파일의 예제입니다.
  
-예제 :
+  예제 :
  
- ```php
-<?php
-// side effect: change ini settings
-ini_set('error_reporting', E_ALL);
+   ```php
+   <?php
+   // side effect: change ini settings
+   ini_set('error_reporting', E_ALL);
 
-// side effect: loads a file
-include "file.php";
+   // side effect: loads a file
+   include "file.php";
 
-// side effect: generates output
-echo "<html>\n";
+   // side effect: generates output
+   echo "<html>\n";
 
-// declaration
-function foo()
-{
+   // declaration
+   function foo()
+   {
     // function body
-}
-```
+   }
+   ```
 다음 예제는 side effects가 없는 선언 파일입니다.
 
 예제 : 
@@ -166,8 +166,57 @@ class Foo
 
 
 ### **PSR-2(Coding Style Guide)**
-###
+PSR-1을 기본으로 추가적인 요구사항들을 가이드 한다.
+### 1. Overview
+* 코드는 반드시 "코딩 스타일 가이드"인 PSR [ PSR-1 ]을 따라야합니다.
+* 코드는 탭이 아닌 들여 쓰기에 4 칸을 사용해야합니다.
+* 라인 길이에 엄격한 제한이 있어서는 안됩니다. 소프트 한도는 120 자 여야합니다 (MUST). 줄은 80 자 이하 여야합니다 (권장하지 않는다).
+* namespace선언 뒤에 빈 줄 이 하나 있어야하며 use선언 블록 뒤에 빈 줄이 하나 있어야합니다 .
+* 클래스를 여는 중괄호는 반드시 다음 줄로 가야하며, 닫는 중괄호는 본문 뒤의 다음 줄로 가야합니다.
+* 메소드의 여는 중괄호는 반드시 다음 줄로 가야하며 닫는 중괄호는 반드시 본문 뒤에 오는 다음 줄로 가야합니다.
+* 가시성 (visibility)은 모든 속성과 메소드에서 반드시 선언되어야한다. abstract및 final가시성 전에 선언해야합니다. static 가시성 뒤에 선언해야합니다.
+* 제어 구조 키워드는 그 뒤에 하나의 공백을 가져야합니다. 메서드와 함수 호출은해서는 안된다.
+* 제어 구조의 여는 중괄호는 반드시 같은 줄에 있어야하며, 닫는 중괄호는 본문 뒤의 다음 줄로 가야합니다.
+* 제어 구조에 대한 여는 괄호는 그 뒤에 공백이 없어야하며, 제어 구조의 닫는 괄호는 전에는 공백이 없어야합니다 (요구하지 말아야한다).
 
+예제 : 
+
+```php
+<?php
+namespace Vendor\Package;
+
+use FooInterface;
+use BarClass as Bar;
+use OtherVendor\OtherPackage\BazClass;
+
+class Foo extends Bar implements FooInterface
+{
+    public function sampleMethod($a, $b = null)
+    {
+        if ($a === $b) {
+            bar();
+        } elseif ($a > $b) {
+            $foo->bar($arg1);
+        } else {
+            BazClass::bar($arg2, $arg3);
+        }
+    }
+
+    final public static function bar()
+    {
+        // method body
+    }
+}
+```
+
+### 2. General
+#### 1.Basic Coding Standard
+ * 코드는 PSR-1에 설명 된 모든 규칙을 따라야합니다 .
+#### 2.Files
+ * 모든 PHP 파일은 Unix LF (linefeed) 줄 끝을 사용해야합니다.
+ * 모든 PHP 파일은 하나의 빈 줄로 끝나야합니다.
+ * 닫기 ?> 태그는 PHP 만 포함 된 파일에서 생략해야합니다 (MUST).
+ 
 ### **PSR-3(Basic Coding Standard)**
 
 ### **PSR-4(Basic Coding Standard)**
