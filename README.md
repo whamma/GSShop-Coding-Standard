@@ -3,7 +3,7 @@
 ## Contents
 ## PHP
 [PSR-1(Basic Coding Standard)](#psr-1basic-coding-standard)
-
+ [1.Overview](#psr1overview)
 [PSR-2(Coding Style Guide)](#psr-2coding-style-guide)
 
 [PSR-3(Basic Coding Standard)](#psr-3logger-interface)
@@ -237,7 +237,7 @@ class Foo extends Bar implements FooInterface
   * 클래스는 객체의 상태를 나타내는 필드(field)와 객체의 행동을 나타내는 메소드(method)로 구성됩니다. 즉, 필드(field)란 클래스에 포함된 변수(variable)를 의미합니다.
   * 메소드(method)란 어떠한 특정 작업을 수행하기 위한 명령문의 집합이라 할 수 있습니다
  
- 2.7.1. Extends and Implements
+  2.7.1. Extends and Implements
    * extends및 implements키워드는 클래스 이름과 같은 줄에 선언해야합니다. 해당 클래스의 여는 중괄호는 자체 줄에 있어야합니다. 클래스의 닫는 중괄호는 본문 뒤의 다음 줄로 가야합니다. 
   
  예제 :
@@ -289,11 +289,283 @@ class ClassName
     public $foo = null;
 }
 ```
+  2.7.3.Methods
+   * 모든 메소드에서 가시성을 선언해야합니다 (MUST). 메소드 이름은 보호되거나 개인적인 가시성을 나타 내기 위해 하나의 밑줄로 접두어를해서는 안됩니다 (SHOULD NOT). 메서드 이름은 메서드 이름 다음에 공백으로 선언하면 안됩니다 (MUST NOT). 여는 중괄호는 반드시 자신의 줄에 있어야하며 닫는 중괄호는 반드시 그 다음 줄에 있어야합니다. 여는 괄호 뒤에 공백이 있으면 안되며 닫는 괄호 앞에 공백이 있어서는 안됩니다.
+   >메소드 선언은 다음과 같습니다. 괄호, 쉼표, 공백 및 중괄호의 배치에 유의하십시오.
+  
+  ```php
+namespace Vendor\Package;
 
- 
+class ClassName
+{
+    public function fooBarBaz($arg1, &$arg2, $arg3 = [])
+    {
+        // method body
+    }
+}
+```
+  2.7.4.Method Arguments
+   * 인수 목록에서 각 쉼표 앞에 공백이 있으면 안되며 각 쉼표 뒤에 하나의 공백이 있어야합니다. 디폴트 값을 가진 메소드 인수는 인수 목록의 끝에 와야합니다 (MUST).
+
+예제:
+
+```php
+<?php
+namespace Vendor\Package;
+
+class ClassName
+{
+    public function foo($arg1, &$arg2, $arg3 = [])
+    {
+        // method body
+    }
+}
+```
+인수 목록은 여러 줄에 걸쳐 나뉘어 질 수 있으며, 각 줄은 한 번 들여 쓰여질 수 있습니다. 그렇게 할 때 목록의 첫 번째 항목은 다음 줄에 있어야하며 한 줄에 하나의 인수 만 있어야합니다.
+
+인수 목록이 여러 줄에 걸쳐 분할되어 있으면 닫는 괄호와 여는 중괄호는 한 줄의 공백을 사용하여 각각의 줄에 함께 있어야합니다 (MUST).
+
+예제:
+
+```php
+<?php
+namespace Vendor\Package;
+
+class ClassName
+{
+    public function aVeryLongMethodName(
+        ClassTypeHint $arg1,
+        &$arg2,
+        array $arg3 = []
+    ) {
+        // method body
+    }
+}
+```
+  2.7.5.abstract, final, and static
+   * 존재하는 경우, abstract및 final선언은 가시성 선언 앞에 와야합니다 (MUST). 현재 static선언이 가시성 선언 뒤에 와야합니다.
+  ```php
+<?php
+namespace Vendor\Package;
+
+abstract class ClassName
+{
+    protected static $foo;
+
+    abstract protected function zim();
+
+    final public static function bar()
+    {
+        // method body
+    }
+}
+```
+
+  2.7.6.Method and Function Calls
+   * 메서드 나 함수 호출을 할 때 메서드 나 함수 이름과 여는 괄호 사이에 공백이 없어야합니다. 여는 괄호 뒤에 공백이 있으면 안되며 닫는 괄호 앞에 공백이 있어서는 안됩니다. 인수 목록에서 각 쉼표 앞에 공백이 있으면 안되며 각 쉼표 뒤에 하나의 공백이 있어야합니다.
+    ```php
+<?php
+bar();
+$foo->bar($arg1);
+Foo::bar($arg2, $arg3);
+```
+인수 목록은 여러 줄에 걸쳐 나뉘어 질 수 있으며, 각 줄은 한 번 들여 쓰여질 수 있습니다. 그렇게 할 때 목록의 첫 번째 항목은 다음 줄에 있어야하며 한 줄에 하나의 인수 만 있어야합니다.
+```php
+<?php
+$foo->bar(
+    $longArgument,
+    $longerArgument,
+    $muchLongerArgument
+);
+```
+### 3.Control Structures
+ > 제어 구조의 일반적인 스타일 규칙은 다음과 같습니다.
+  * 제어 구조 키워드 다음에 하나의 공백이 있어야합니다
+  * 여는 괄호 뒤에 공백이 있으면 안됩니다 (MUST NOT).
+  * 닫는 괄호 앞에 공백이 있어서는 안됩니다 (MUST NOT).
+  * 닫는 괄호와 여는 중괄호 사이에 하나의 공백이 있어야합니다.
+  * 구조체는 한 번 들여 쓰기되어야합니다 (MUST).
+  * 닫는 중괄호는 몸체 뒤의 다음 줄에 있어야합니다.
+ 각 구조의 몸체는 중괄호로 묶어야합니다 (MUST). 이것은 구조가 어떻게 보이는지를 표준화하고 새로운 라인이 몸에 추가 될 때 오류가 발생할 가능성을 줄입니다.
+ #### 3.1.if, elseif, else
+  * if구조는 다음과 같다. 괄호, 공백 및 중괄호의 배치에 유의하십시오. 그 else와 elseif이전 몸 닫는 중괄호 동일한 행에있다.
+  
+  예제 : 
+  ```php
+<?php
+if ($expr1) {
+    // if body
+} elseif ($expr2) {
+    // elseif body
+} else {
+    // else body;
+}
+```
+모든 제어 키워드가 단일 단어처럼 보이도록 elseif 대신 else if라고 규정하는게 좋습니다.
+ #### 3.2.switch, case
+  * 스위치 구조는 다음과 같습니다. 괄호, 공백 및 중괄호의 배치에 유의하십시오. case 문은 스위치에서 한 번 들여 쓰기되어야하며, break 키워드 (또는 다른 종료 키워드)는 사례 본문과 동일한 수준에서 들여 쓰기되어야합니다 (MUST). 비어 있지 않은 케이스 본문에서 fall-through가 의도적 일 때 // break와 같은 코멘트가 있어야합니다.
+
+예제:
+
+```php
+<?php
+switch ($expr) {
+    case 0:
+        echo 'First case, with a break';
+        break;
+    case 1:
+        echo 'Second case, which falls through';
+        // no break
+    case 2:
+    case 3:
+    case 4:
+        echo 'Third case, return instead of break';
+        return;
+    default:
+        echo 'Default case';
+        break;
+}
+```
+ #### 3.3.while, do while
+  * while문은 다음과 같다. 괄호, 공백 및 중괄호의 배치에 유의하십시오.
+  
+  예제:
+  
+  ```php
+  <?php
+while ($expr) {
+    // structure body
+}
+  ```
+  마찬가지로 do while 구문은 다음과 같습니다. 괄호, 공백 및 중괄호의 배치에 유의하십시오.
+  
+  ```php
+  <?php
+do {
+    // structure body;
+} while ($expr);
+  ```
+ #### 3.4.for
+  * for문 은 다음과 같습니다. 괄호, 공백 및 중괄호의 배치에 유의하십시오.
+  ```php
+  <?php
+for ($i = 0; $i < 10; $i++) {
+    // for body
+}
+  ```
+ #### 3.5.foreach
+  * foreach문 은 다음과 같습니다. 괄호, 공백 및 중괄호의 배치에 유의하십시오.
+  ```php
+  <?php
+foreach ($iterable as $key => $value) {
+    // foreach body
+}
+  ```
+ #### 3.6.try, catch
+  * try catch 문은 다음과 같습니다. 괄호, 공백 및 중괄호의 배치에 유의하십시오.
+  ```php
+  <?php
+try {
+    // try body
+} catch (FirstExceptionType $e) {
+    // catch body
+} catch (OtherExceptionType $e) {
+    // catch body
+}
+  ```
+### 4.Closures
+ 클로저는 function 구문 뒤의 공백과 use 구문 앞뒤 공백으로 선언해야합니다 (필수사항). 여는 중괄호는 반드시 같은 줄에 있어야하며 닫는 중괄호는 반드시 그 다음 줄에 있어야합니다. 인수 목록이나 변수 목록의 여는 괄호 다음에 공백이 있어서는 안되며 인수 목록이나 변수 목록의 닫는 괄호 앞에 공백이 있어서는 안됩니다. 인수 목록과 변수 목록에는 각 쉼표 앞에 공백이 있어서는 안되며 각 쉼표 뒤에 하나의 공백이 있어야합니다. 기본값을 가진 클로저 인수는 인수 목록의 끝에 와야합니다 (필수).
+
+클로저 선언은 다음과 같습니다. 괄호, 쉼표, 공백 및 중괄호의 배치에 유의하십시오.
+
+```php
+<?php
+$closureWithArgs = function ($arg1, $arg2) {
+    // body
+};
+
+$closureWithArgsAndVars = function ($arg1, $arg2) use ($var1, $var2) {
+    // body
+};
+```
+인수 목록과 변수 목록은 여러 행에 걸쳐 나뉘어 질 수 있습니다 (각 행은 한 번 들여 쓰기됩니다). 그렇게 할 때 목록의 첫 번째 항목은 다음 줄에 있어야하며 한 줄에 하나의 인수 또는 변수 만 있어야합니다.
+
+끝리스트 (인수 또는 변수의 여부)가 여러 줄로 나뉘어 질 때 닫는 괄호와 여는 중괄호는 한 줄의 공백을 사용하여 각각의 줄에 함께 있어야합니다 (MUST).
+
+다음은 인수 목록이 있거나없는 클로저의 예와 여러 줄에 걸쳐있는 변수 목록입니다.
+```php
+<?php
+$longArgs_noVars = function (
+    $longArgument,
+    $longerArgument,
+    $muchLongerArgument
+) {
+    // body
+};
+
+$noArgs_longVars = function () use (
+    $longVar1,
+    $longerVar2,
+    $muchLongerVar3
+) {
+    // body
+};
+
+$longArgs_longVars = function (
+    $longArgument,
+    $longerArgument,
+    $muchLongerArgument
+) use (
+    $longVar1,
+    $longerVar2,
+    $muchLongerVar3
+) {
+    // body
+};
+
+$longArgs_shortVars = function (
+    $longArgument,
+    $longerArgument,
+    $muchLongerArgument
+) use ($var1) {
+    // body
+};
+
+$shortArgs_longVars = function ($arg) use (
+    $longVar1,
+    $longerVar2,
+    $muchLongerVar3
+) {
+    // body
+};
+```
+형식 지정 규칙은 함수 또는 메소드 호출에서 클로저가 직접 인수로 사용될 때도 적용됩니다.
+```php
+<?php
+$foo->bar(
+    $arg1,
+    function ($arg2) use ($var1) {
+        // body
+    },
+    $arg3
+);
+```
+### 5.Conclusion
+ * 전역 변수 및 전역 상수 선언
+ * 함수 선언
+ * 운영자 및 과제
+ * 라인 간 정렬
+ * 주석 및 문서 블록
+ * 클래스 이름 접두사 및 접미사
+ * 모범 사례
 ### **PSR-3(Basic Coding Standard)**
 
 ### **PSR-4(Basic Coding Standard)**
+
+
+
+
+
 
 ### **단일 책임 원칙**
 
