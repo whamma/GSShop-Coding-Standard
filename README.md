@@ -1,4 +1,4 @@
-# Coding-Standard
+# Gemiso PHP & Laravel Coding Standard
 
 ## Contents
 ## PHP
