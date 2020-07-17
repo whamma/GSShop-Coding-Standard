@@ -4,48 +4,10 @@
 ## PHP
 [기본 코딩 표준 PSR-1(Basic Coding Standard)](#기본-코딩-표준-psr-1basic-coding-standard)
 
-[1. 개요](#1-overviewpsr-1)
+[코딩 스타일 가이드 PSR-2(Coding Style Guide)](#코딩-스타일-가이드-psr-2coding-style-guide)
 
-[2. Files](#2-files)
+[오토로더 PSR-4(Aytoloader)](#오토로더-psr-4autoloader)
 
-[2.1 PHP 태그](#21-php-태그)
-
-[2.2 문자 인코딩](#22-문자-인코딩)
-
-[2.3 Side Effects](#23-side-effects)
-
-[3. Namespace and Class Names](#3-namespace-and-class-names)
-
-[4. Class Constants, Properties, and Methods](#4-class-constants-properties-and-methods)
-
-
-[PSR-2(Coding Style Guide)](#psr-2coding-style-guide)
-
-[1. Overview](#1-overviewpsr-2)
-
-[2. General](#2-general)
-
-[2.1 Basic Coding Standard](#21-basic-coding-standard)
-
-[2.2 Files](#22-files)
-
-[2.3 Lines](#23-lines)
-
-[2.4 Indenting](#24-indenting)
-
-[2.5 Keywords and True/False/Null](#25-keywords-and-truefalsenull)
-
-[2.6 Namespace and Use Declarations](#26-namespace-and-use-declarations)
-
-[2.7 Classes, Properties, and Methods](#27-classes-properties-and-methods)
-
-[3. Control Structures](#3-control-structures)
-
-[PSR-3(Basic Coding Standard)](#psr-3logger-interface)
-
-[PSR-4(Basic Coding Standard)](#psr-4autoloader)
-
-[1. Overview](#1-overviewpsr-4)
 
 ## laravel
 [단일 책임 원칙](#단일-책임-원칙)
@@ -88,6 +50,57 @@
 #### 파일은 태그 <?php와 <?=태그만 사용해야 합니다. (필수)
  * PHP 코드는 긴 태그인 <?php ?> 와 짧은 에코 태그인 <?= ?> 를 사용하고 그 외의 변형 태그는 사용하지 않습니다.
 #### 파일은 PHP 코드에 BOM없이 UTF-8 만 사용해야합니다. (필수)
+#### Side Effects
+ * 빈 구문이 아니라면 반드시 하나의 side effect를 가져야합니다.
+ >"All non null statements shall potentially have a side effect"
+ >>"실행 중에 어떤 객체를 접근해서 변화가 일어나는 행위"
+"Accessing an object designated by a volatile lvalue, modifying an object, calling a library I/O function, or calling a function that does any of those operations are all side effects, which are changes in the state of the execution environment."
+ * 파일은 새로운 기호 (클래스, 함수, 상수 등)를 선언하고 다른 부작용을 일으키지 않아야하며, side effects가 있는 로직을 실행해야하지만 두 가지를 모두 실행해서는 안된다.
+
+ * "side effects"는 단지 클래스, 함수, 상수 등을 선언하는 것과 직접적으로 관련이없는 로직의 실행을 파일을 포함하는 것을 의미합니다 .
+
+ * "side effects"에는 출력 생성, 명시 적 사용 require또는 include의 외부 서비스 연결, ini 설정 수정, 오류 또는 예외 처리, 전역 변수 또는 정적 변수 [수정, 파일 읽기 또는 쓰기] 등 이 포함되지만 이에 국한 되지는 않습니다 . 다음은 선언과 side effects가 모두 포함 된 파일의 예제입니다.
+
+예제 : 
+
+```php
+<?php
+// side effect: change ini settings
+ini_set('error_reporting', E_ALL);
+
+// side effect: loads a file
+include "file.php";
+
+// side effect: generates output
+echo "<html>\n";
+
+// declaration
+function foo()
+{
+    // function body
+}
+```
+다음 예제는 side effects가 없는 선언 파일입니다.
+
+예제:
+
+```php
+<?php
+// declaration
+function foo()
+{
+    // function body
+}
+
+// conditional declaration is *not* a side effect
+if (! function_exists('bar')) {
+    function bar()
+    {
+        // function body
+    }
+}
+```
+
 #### 네임 스페이스와 클래스는 반드시 "autoloading" PSR [ PSR-0 , PSR-4 ]을 따라야합니다.
  * PHP 5.3 및 이후 버전 용으로 작성된 코드는 정식 네임 스페이스를 사용해야합니다.
 
@@ -153,8 +166,6 @@ class UserName
 ```
  
 
-
-
 [🔝 목차로 돌아가기](#contents)
 ### **코딩 스타일 가이드 PSR-2(Coding Style Guide)**
 #### 코드는 반드시 "코딩 스타일 가이드"인 PSR [ PSR-1 ]을 따라야합니다.
@@ -171,7 +182,7 @@ class UserName
  * 한 줄에 하나 이상의 문장이 있어서는 안됩니다.
 #### 들여쓰기(Indenting)
  * 코드는 반드시 4 칸의 들여 쓰기를 사용해야하며, 들여 쓰기에는 탭을 사용하지 않아야합니다.
-##### 2.5 키워드(Keywords and True/False/Null)
+##### 키워드(Keywords and True/False/Null)
  * PHP 키워드 는 소문자 여야합니다. PHP 상수 true,, false및 null은 소문자 여야합니다.
 #### 네임스페이스와 Use선언(Namespace and Use Declarations)
  * namespace선언 다음에 빈 줄이 하나 있어야합니다.
@@ -329,13 +340,6 @@ $foo->bar(
     $muchLongerArgument
 );
 ```
-
-
-
-
-* 제어 구조 키워드는 그 뒤에 하나의 공백을 가져야합니다. 메서드와 함수 호출은해서는 안된다.
-* 제어 구조의 여는 중괄호는 반드시 같은 줄에 있어야하며, 닫는 중괄호는 본문 뒤의 다음 줄로 가야합니다.
-* 제어 구조에 대한 여는 괄호는 그 뒤에 공백이 없어야하며, 제어 구조의 닫는 괄호는 전에는 공백이 없어야합니다 (요구하지 말아야한다).
 #### 제어 구조(Control Structures)
  > 제어 구조의 일반적인 스타일 규칙은 다음과 같습니다.
   * 제어 구조 키워드 다음에 하나의 공백이 있어야합니다
@@ -512,13 +516,8 @@ $foo->bar(
 );
 ```
 
- 
-[🔝 목차로 돌아가기](#contents) 
-### **PSR-3(Basic Coding Standard)**
-
 [🔝 목차로 돌아가기](#contents)
-### **PSR-4(Basic Coding Standard)**
-### 1. Overview(PSR-4)
+### **오토로더 PSR-4(Autoloader)**
 #### Basics
 이 PSR은 파일 경로에서 클래스를 자동로드하기위한 스펙을 설명합니다. 이 제품은 완벽하게 상호 운영이 가능하며 PSR-0을 포함한 다른 자동 로딩 사양과 함께 사용할 수 있습니다. 또한이 PSR은 사양에 따라 자동로드되는 파일을 저장할 위치를 설명합니다.
 #### Specification
