@@ -85,70 +85,11 @@
 [또 다른 좋은 사례](#또-다른-좋은-사례)
 
 ### **기본 코딩 표준 PSR-1(Basic Coding Standard)**
- * 파일은 태그 <?php와 <?=태그만 사용해야 합니다. (필수)
- * 파일은 PHP 코드에 BOM없이 UTF-8 만 사용해야합니다. (필수)
- * 네임 스페이스와 클래스는 반드시 "autoloading" PSR [ PSR-0 , PSR-4 ]을 따라야합니다.
- * 클래스 이름은 반드시 PascalCase를 따라야 한다. ex)UserName
- * 클래스 상수는 모두 대문자로 밑줄 구분 기호로 선언해야합니다. ex)USER_NAME
- * 메서드 이름은 반드시 camelCase에서 선언해야합니다. ex)userName
- * 이 문서에서 핵심 단어는 반드시 "필수", "요구하지 말아야한다", "해야한다", "하지 말아야한다", "하지 마라", "권장하지 않는다", "할 수도있다", "선택 가능하다"등이다. (“MUST”, “MUST NOT”, “REQUIRED”, “SHALL”, “SHALL NOT”, “SHOULD”, “SHOULD NOT”, “RECOMMENDED”, “MAY”,) RFC 2119에 설명 된 대로 해석되어야 합니다.
- 
-### Side Effects
-* 파일에는 기호 (클래스, 함수, 상수 등)를 선언 하거나 side effects (예 : 출력 생성, .ini 설정 변경 등)을 발생시키는 작업 중 하나만 하여야 한다. 둘이 같이 선언되면 안된다.
-* 빈 구문이 아니라면 반드시 하나의 side effect를 가져야합니다.
->"All non null statements shall potentially have a side effect"
-  >>_"실행 중에 어떤 객체를 접근해서 변화가 일어나는 행위"
-  "Accessing an object designated by a volatile lvalue, modifying an object, calling a library I/O function, or calling a function that does any of those operations are all side effects, which are changes in the state of the execution environment."_
-
-   * 파일은 새로운 기호 (클래스, 함수, 상수 등)를 선언하고 다른 부작용을 일으키지 않아야하며, side effects가 있는 로직을 실행해야하지만 두 가지를 모두 실행해서는 안된다.
-
-   * "side effects"는 단지 클래스, 함수, 상수 등을 선언하는 것과 직접적으로 관련이없는 로직의 실행을 파일을 포함하는 것을 의미합니다 .
-
-   * "side effects"에는 출력 생성, 명시 적 사용 require또는 include의 외부 서비스 연결, ini 설정 수정, 오류 또는 예외 처리, 전역 변수 또는 정적 변수 [수정, 파일 읽기 또는 쓰기] 등 이 포함되지만 이에 국한 되지는 않습니다 . 다음은 선언과 side effects가 모두 포함 된 파일의 예제입니다.
- 
-  예제 :
- 
-   ```php
-   <?php
-   // side effect: change ini settings
-   ini_set('error_reporting', E_ALL);
-
-   // side effect: loads a file
-   include "file.php";
-
-   // side effect: generates output
-   echo "<html>\n";
-
-   // declaration
-   function foo()
-   {
-    // function body
-   }
-   ```
-다음 예제는 side effects가 없는 선언 파일입니다.
-
-예제 : 
-
-```php
-<?php
-// declaration
-function foo()
-{
-    // function body
-}
-
-// conditional declaration is *not* a side effect
-if (! function_exists('bar')) {
-    function bar()
-    {
-        // function body
-    }
-}
-```
-
-### 3. Namespace and Class Names
- #### 3.1 네임 스페이스와 클래스는 반드시 "autoloading" PSR [ PSR-0 , PSR-4 ]을 따라야합니다.
-  * 이것은 각 클래스가 하나의 파일에 있고 적어도 한 수준의 네임 스페이스, 즉 최상위 벤더 이름에 있음을 의미합니다. 클래스 이름은에서 선언되어야 StudlyCaps합니다. PHP 5.3 및 이후 버전 용으로 작성된 코드는 정식 네임 스페이스를 사용해야합니다.
+#### 파일은 태그 <?php와 <?=태그만 사용해야 합니다. (필수)
+ * PHP 코드는 긴 태그인 <?php ?> 와 짧은 에코 태그인 <?= ?> 를 사용하고 그 외의 변형 태그는 사용하지 않습니다.
+#### 파일은 PHP 코드에 BOM없이 UTF-8 만 사용해야합니다. (필수)
+#### 네임 스페이스와 클래스는 반드시 "autoloading" PSR [ PSR-0 , PSR-4 ]을 따라야합니다.
+ * PHP 5.3 및 이후 버전 용으로 작성된 코드는 정식 네임 스페이스를 사용해야합니다.
 
 예제:
 
@@ -161,7 +102,9 @@ class Foo
 {
 }
 ```
-php ver.5.2.x 로 작성된 코드는 클래스 이름에 Vendor_ 접두어의 의사 네임 스페이스 규칙을 사용해야합니다.
+ * php ver.5.2.x 로 작성된 코드는 클래스 이름에 Vendor_ 접두어의 의사 네임 스페이스 규칙을 사용해야합니다.
+
+예제 :
 
 ```php
 <?php
@@ -170,11 +113,18 @@ class Vendor_Model_Foo
 {
 }
 ```
+#### 클래스 이름은 반드시 PascalCase를 따라야 한다. 
 
-### 4. Class Constants, Properties, and Methods
- "Class"라는 용어는 모든 Class, interfaces 및 특성을 나타냅니다.
- #### 4.1 상수
-  * 클래스 상수는 밑줄 구분 기호로 모든 대문자에서 선언되어야 합니다.
+예제 : 
+
+```php
+<?php
+class UserName
+{
+   ...
+}
+```
+#### 클래스 상수는 모두 대문자로 밑줄 구분 기호로 선언해야합니다. 
 
 예제 : 
 
@@ -182,93 +132,56 @@ class Vendor_Model_Foo
 <?php
 namespace Vendor\Model;
 
-class Foo
+class UserName
 {
     const VERSION = '1.0';
     const DATE_APPROVED = '2012-06-01';
 }
 ```
-
- #### 4.2. 특성 본 가이드는 $StudlyCaps, $camelCass, $under_score 속성 이름의 사용에 관한 권고를 의도적으로 회피한다.
-  * 어떤 명명 규칙을 사용하든 적절한 범위 내에서 일관성 있게 적용해야 한다. 이 범위는 공급업체 수준, 패키지 수준, 클래스 수준 또는 방법 수준일 수 있다.
- #### 4.3. Method name은 반드시 camelCase()로 선언해야 합니다.
-
-[🔝 목차로 돌아가기](#contents)
-### **PSR-2(Coding Style Guide)**
- * PSR-1을 기본으로 추가적인 요구사항들을 가이드 한다.
- 
-### 1. Overview(PSR-2)
-* 코드는 반드시 "코딩 스타일 가이드"인 PSR [ PSR-1 ]을 따라야합니다.
-* 코드는 탭이 아닌 들여 쓰기에 4 칸을 사용해야합니다.
-* 라인 길이에 엄격한 제한이 있어서는 안됩니다. 소프트 한도는 120 자 여야합니다 (MUST). 줄은 80 자 이하 여야합니다 (권장하지 않는다).
-* namespace선언 뒤에 빈 줄 이 하나 있어야하며 use선언 블록 뒤에 빈 줄이 하나 있어야합니다 .
-* 클래스를 여는 중괄호는 반드시 다음 줄로 가야하며, 닫는 중괄호는 본문 뒤의 다음 줄로 가야합니다.
-* 메소드의 여는 중괄호는 반드시 다음 줄로 가야하며 닫는 중괄호는 반드시 본문 뒤에 오는 다음 줄로 가야합니다.
-* 가시성 (visibility)은 모든 속성과 메소드에서 반드시 선언되어야한다. abstract및 final가시성 전에 선언해야합니다. static 가시성 뒤에 선언해야합니다.
-* 제어 구조 키워드는 그 뒤에 하나의 공백을 가져야합니다. 메서드와 함수 호출은해서는 안된다.
-* 제어 구조의 여는 중괄호는 반드시 같은 줄에 있어야하며, 닫는 중괄호는 본문 뒤의 다음 줄로 가야합니다.
-* 제어 구조에 대한 여는 괄호는 그 뒤에 공백이 없어야하며, 제어 구조의 닫는 괄호는 전에는 공백이 없어야합니다 (요구하지 말아야한다).
+#### 메서드 이름은 반드시 camelCase에서 선언해야합니다.
 
 예제 : 
 
 ```php
 <?php
-namespace Vendor\Package;
-
-use FooInterface;
-use BarClass as Bar;
-use OtherVendor\OtherPackage\BazClass;
-
-class Foo extends Bar implements FooInterface
+class UserName
 {
-    public function sampleMethod($a, $b = null)
-    {
-        if ($a === $b) {
-            bar();
-        } elseif ($a > $b) {
-            $foo->bar($arg1);
-        } else {
-            BazClass::bar($arg2, $arg3);
-        }
-    }
-
-    final public static function bar()
-    {
-        // method body
+    public function getAge(){ 
+     ...
     }
 }
 ```
-
-### 2. General
- #### 2.1 Basic Coding Standard
-  * 코드는 PSR-1에 설명 된 모든 규칙을 따라야합니다 .
- #### 2.2 Files
-  * 모든 PHP 파일은 Unix LF (linefeed) 줄 끝을 사용해야합니다.
-  * 모든 PHP 파일은 하나의 빈 줄로 끝나야합니다.
-  * 닫기 ?> 태그는 PHP 만 포함 된 파일에서 생략해야합니다 (MUST).
- #### 2.3 Lines
-  * 라인 길이에 엄격한 제한이 있어서는 안됩니다.
-  * 줄 길이에 대한 소프트 제한은 120 자 여야합니다. 자동화 된 스타일 체커는 반드시 경고해야하지만 소프트 한도에서 오류를 나타내지 않아야합니다.
-  * 행은 80자를 넘지 않아야합니다 (SHOULD NOT). 그보다 긴 행은 각각 80 문자 이하의 여러 행으로 나눠 져야합니다 (SHOULD).
-  * 비어 있지 않은 줄 끝에는 공백 문자가 없어야합니다.
-  * 가독성을 높이고 관련 코드 블록을 나타 내기 위해 빈 줄을 추가 할 수 있습니다 (MAY).
-  * 한 줄에 하나 이상의 문장이 있어서는 안됩니다.
- #### 2.4 Indenting
-  * 코드는 반드시 4 칸의 들여 쓰기를 사용해야하며, 들여 쓰기에는 탭을 사용하지 않아야합니다.
-  * Nb : 공백만을 사용하고 탭과 공백을 섞지 않으면, diff, 패치, 히스토리 및 주석 문제를 피할 수 있습니다. 공백을 사용하면 행간 정렬을 위해 세분화 된 하위 들여 쓰기를 쉽게 삽입 할 수 있습니다.
- #### 2.5 Keywords and True/False/Null
-  * PHP 키워드 는 소문자 여야합니다. PHP 상수 true,, false및 null은 소문자 여야합니다.
- #### 2.6 Namespace and Use Declarations
-  * 존재할 때 namespace선언 다음에 빈 줄이 하나 있어야합니다.
-  * 이 use선언 이 존재하면 모든 선언은 반드시 선언을 따라야합니다 namespace.
-  * use선언 당 하나의 키워드가 있어야합니다.
-  * use블록 다음에 빈 줄이 하나 있어야합니다.
- #### 2.7 Classes, Properties, and Methods
-  * 클래스는 객체의 상태를 나타내는 필드(field)와 객체의 행동을 나타내는 메소드(method)로 구성됩니다. 즉, 필드(field)란 클래스에 포함된 변수(variable)를 의미합니다.
-  * 메소드(method)란 어떠한 특정 작업을 수행하기 위한 명령문의 집합이라 할 수 있습니다
  
-  2.7.1 Extends and Implements
-   * extends및 implements키워드는 클래스 이름과 같은 줄에 선언해야합니다. 해당 클래스의 여는 중괄호는 자체 줄에 있어야합니다. 클래스의 닫는 중괄호는 본문 뒤의 다음 줄로 가야합니다. 
+
+
+
+[🔝 목차로 돌아가기](#contents)
+### **코딩 스타일 가이드 PSR-2(Coding Style Guide)**
+#### 코드는 반드시 "코딩 스타일 가이드"인 PSR [ PSR-1 ]을 따라야합니다.
+#### 파일(Files)
+ * 모든 PHP 파일은 Unix LF (linefeed) 줄 끝을 사용해야합니다.
+ * 모든 PHP 파일은 하나의 빈 줄로 끝나야합니다.
+ * 닫기 ?> 태그는 PHP 만 포함 된 파일에서 생략해야합니다 (MUST).
+#### 라인(Lines) 
+ * 라인 길이에 엄격한 제한이 있어서는 안됩니다. 
+ * 줄 길이에 대한 소프트 한도는 120 자 여야합니다 (MUST). 자동화 된 스타일 체커는 반드시 경고해야하지만 소프트 한도에서 오류를 나타내지 않아야합니다.
+ * 행은 80자를 넘지 않아야합니다 (SHOULD NOT). 그보다 긴 행은 각각 80 문자 이하의 여러 행으로 나눠 져야합니다 (SHOULD).
+ * 비어 있지 않은 줄 끝에는 공백 문자가 없어야합니다.
+ * 가독성을 높이고 관련 코드 블록을 나타 내기 위해 빈 줄을 추가 할 수 있습니다 (MAY).
+ * 한 줄에 하나 이상의 문장이 있어서는 안됩니다.
+#### 들여쓰기(Indenting)
+ * 코드는 반드시 4 칸의 들여 쓰기를 사용해야하며, 들여 쓰기에는 탭을 사용하지 않아야합니다.
+##### 2.5 키워드(Keywords and True/False/Null)
+ * PHP 키워드 는 소문자 여야합니다. PHP 상수 true,, false및 null은 소문자 여야합니다.
+#### 네임스페이스와 Use선언(Namespace and Use Declarations)
+ * namespace선언 다음에 빈 줄이 하나 있어야합니다.
+ * use선언 당 하나의 키워드가 있어야합니다.
+ * use블록 다음에 빈 줄이 하나 있어야합니다.
+#### 클래스, 속성, 메소드(Classes, Properties, and Methods)
+ * 클래스는 객체의 상태를 나타내는 필드(field)와 객체의 행동을 나타내는 메소드(method)로 구성됩니다. 즉, 필드(field)란 클래스에 포함된 변수(variable)를 의미합니다.
+ * 메소드(method)란 어떠한 특정 작업을 수행하기 위한 명령문의 집합이라 할 수 있습니다
+ ##### Extends and Implements
+  * extends및 implements키워드는 클래스 이름과 같은 줄에 선언해야합니다. 해당 클래스의 여는 중괄호는 다음 줄에 있어야합니다. 클래스의 닫는 중괄호는 본문 뒤의 다음 줄로 가야합니다. 
   
  예제 :
 
@@ -285,7 +198,7 @@ class ClassName extends ParentClass implements \ArrayAccess, \Countable
     // constants, properties, methods
 }
 ```
-목록은 implements 각각의 후속 행 일단 들여되는 여러 줄에 걸쳐 분할 될 수있다. 그렇게 할 때 목록의 첫 번째 항목은 다음 줄에 있어야하며 한 줄에 하나의 인터페이스만 있어야합니다.
+implements가 여러개 있을 때 여러 줄에 걸쳐 분할 될 수있다. 그렇게 할 때 목록의 첫 번째 항목은 다음 줄에 있어야하며 한 줄에 하나의 인터페이스만 있어야합니다.
 
 예제 :
 
@@ -305,8 +218,8 @@ class ClassName extends ParentClass implements
     // constants, properties, methods
 }
 ```
-  2.7.2 Properties
-   * 모든 속성에서 가시성을 반드시 선언해야합니다. var키워드는 속성을 선언하는 데 사용되어서는 안된다. 명령문마다 하나 이상의 속성이 선언되어서는 안됩니다. 프로퍼티 이름은 보호 된 프라이빗 가시성 또는 프라이빗 가시성을 나타 내기 위해 하나의 밑줄로 접두어를 사용해서는 안됩니다 (SHOULD NOT). 속성 선언은 다음과 같습니다.
+ ##### 속성(Properties)
+  * 모든 속성에서 가시성을 반드시 선언해야합니다. var키워드는 속성을 선언하는 데 사용되어서는 안된다. 명령문마다 하나 이상의 속성이 선언되어서는 안됩니다. 프로퍼티 이름은 보호 된 프라이빗 가시성 또는 프라이빗 가시성을 나타 내기 위해 하나의 밑줄로 접두어를 사용해서는 안됩니다 (SHOULD NOT). 속성 선언은 다음과 같습니다.
    
    예제:
    
@@ -320,8 +233,8 @@ class ClassName
 }
 ```
 
-  2.7.3 Methods
-   * 모든 메소드에서 가시성을 선언해야합니다 (MUST). 메소드 이름은 보호되거나 개인적인 가시성을 나타 내기 위해 하나의 밑줄로 접두어를해서는 안됩니다 (SHOULD NOT). 메서드 이름은 메서드 이름 다음에 공백으로 선언하면 안됩니다 (MUST NOT). 여는 중괄호는 반드시 자신의 줄에 있어야하며 닫는 중괄호는 반드시 그 다음 줄에 있어야합니다. 여는 괄호 뒤에 공백이 있으면 안되며 닫는 괄호 앞에 공백이 있어서는 안됩니다.
+ ##### 메소드(Methods)
+  * 모든 메소드에서 가시성을 선언해야합니다 (MUST). 메소드 이름은 보호되거나 개인적인 가시성을 나타 내기 위해 하나의 밑줄로 접두어를해서는 안됩니다 (SHOULD NOT). 메서드 이름은 메서드 이름 다음에 공백으로 선언하면 안됩니다 (MUST NOT). 여는 중괄호는 반드시 다음 줄에 있어야하며 닫는 중괄호는 반드시 그 다음 줄에 있어야합니다. 여는 괄호 뒤에 공백이 있으면 안되며 닫는 괄호 앞에 공백이 있어서는 안됩니다.
    >메소드 선언은 다음과 같습니다. 괄호, 쉼표, 공백 및 중괄호의 배치에 유의하십시오.
   
 ```php
@@ -335,9 +248,8 @@ class ClassName
     }
 }
 ```
-
-  2.7.4 Method Arguments
-   * 인수 목록에서 각 쉼표 앞에 공백이 있으면 안되며 각 쉼표 뒤에 하나의 공백이 있어야합니다. 디폴트 값을 가진 메소드 인수는 인수 목록의 끝에 와야합니다 (MUST).
+ ##### 메소드 인수(Method Arguments)
+  * 인수 목록에서 각 쉼표 앞에 공백이 있으면 안되며 각 쉼표 뒤에 하나의 공백이 있어야합니다. 디폴트 값을 가진 메소드 인수는 인수 목록의 끝에 와야합니다 (MUST).
 
 예제:
 
@@ -353,9 +265,9 @@ class ClassName
     }
 }
 ```
-인수 목록은 여러 줄에 걸쳐 나뉘어 질 수 있으며, 각 줄은 한 번 들여 쓰여질 수 있습니다. 그렇게 할 때 목록의 첫 번째 항목은 다음 줄에 있어야하며 한 줄에 하나의 인수 만 있어야합니다.
+  * 인수 목록은 여러 줄에 걸쳐 나뉘어 질 수 있으며, 각 줄은 한 번 들여 쓰여질 수 있습니다. 그렇게 할 때 목록의 첫 번째 항목은 다음 줄에 있어야하며 한 줄에 하나의 인수 만 있어야합니다.
 
-인수 목록이 여러 줄에 걸쳐 분할되어 있으면 닫는 괄호와 여는 중괄호는 한 줄의 공백을 사용하여 각각의 줄에 함께 있어야합니다 (MUST).
+  * 인수 목록이 여러 줄에 걸쳐 분할되어 있으면 닫는 괄호와 여는 중괄호는 한 줄의 공백을 사용하여 각각의 줄에 함께 있어야합니다 (MUST).
 
 예제:
 
@@ -374,8 +286,10 @@ class ClassName
     }
 }
 ```
-  2.7.5 abstract, final, and static
-   * 존재하는 경우, abstract및 final선언은 가시성 선언 앞에 와야합니다 (MUST). 현재 static선언이 가시성 선언 뒤에 와야합니다.
+ ##### 추상, 상수, 정적(abstract, final, and static)
+  * abstract및 final선언은 가시성 선언 앞에 와야합니다 (MUST). static은 가시성 뒤에 선언해야한다.
+  
+  예제 :
   ```php
 <?php
 namespace Vendor\Package;
@@ -392,10 +306,10 @@ abstract class ClassName
     }
 }
 ```
-
-  2.7.6 Method and Function Calls
-   * 메서드 나 함수 호출을 할 때 메서드 나 함수 이름과 여는 괄호 사이에 공백이 없어야합니다. 여는 괄호 뒤에 공백이 있으면 안되며 닫는 괄호 앞에 공백이 있어서는 안됩니다. 인수 목록에서 각 쉼표 앞에 공백이 있으면 안되며 각 쉼표 뒤에 하나의 공백이 있어야합니다.
-
+ ##### 메소드와 함수 호출(Method and Function Calls)
+  * 메서드 나 함수 호출을 할 때 메서드 나 함수 이름과 여는 괄호 사이에 공백이 없어야합니다. 여는 괄호 뒤에 공백이 있으면 안되며 닫는 괄호 앞에 공백이 있어서는 안됩니다. 인수 목록에서 각 쉼표 앞에 공백이 있으면 안되며 각 쉼표 뒤에 하나의 공백이 있어야합니다.
+ 
+ 예제 :
 ```php
 <?php
 bar();
@@ -403,7 +317,10 @@ $foo->bar($arg1);
 Foo::bar($arg2, $arg3);
 ```
 
-인수 목록은 여러 줄에 걸쳐 나뉘어 질 수 있으며, 각 줄은 한 번 들여 쓰여질 수 있습니다. 그렇게 할 때 목록의 첫 번째 항목은 다음 줄에 있어야하며 한 줄에 하나의 인수 만 있어야합니다.
+  * 인수 목록은 여러 줄에 걸쳐 나뉘어 질 수 있으며, 각 줄은 한 번 들여 쓰여질 수 있습니다. 그렇게 할 때 목록의 첫 번째 항목은 다음 줄에 있어야하며 한 줄에 하나의 인수 만 있어야합니다.
+  
+  예제 :
+  
 ```php
 <?php
 $foo->bar(
@@ -412,31 +329,41 @@ $foo->bar(
     $muchLongerArgument
 );
 ```
-### 3. Control Structures
+
+
+
+
+* 제어 구조 키워드는 그 뒤에 하나의 공백을 가져야합니다. 메서드와 함수 호출은해서는 안된다.
+* 제어 구조의 여는 중괄호는 반드시 같은 줄에 있어야하며, 닫는 중괄호는 본문 뒤의 다음 줄로 가야합니다.
+* 제어 구조에 대한 여는 괄호는 그 뒤에 공백이 없어야하며, 제어 구조의 닫는 괄호는 전에는 공백이 없어야합니다 (요구하지 말아야한다).
+#### 제어 구조(Control Structures)
  > 제어 구조의 일반적인 스타일 규칙은 다음과 같습니다.
   * 제어 구조 키워드 다음에 하나의 공백이 있어야합니다
+  * 여는 중괄호는 반드시 같은 줄에 있어야한다.
   * 여는 괄호 뒤에 공백이 있으면 안됩니다 (MUST NOT).
   * 닫는 괄호 앞에 공백이 있어서는 안됩니다 (MUST NOT).
   * 닫는 괄호와 여는 중괄호 사이에 하나의 공백이 있어야합니다.
   * 구조체는 한 번 들여 쓰기되어야합니다 (MUST).
   * 닫는 중괄호는 몸체 뒤의 다음 줄에 있어야합니다.
  각 구조의 몸체는 중괄호로 묶어야합니다 (MUST). 이것은 구조가 어떻게 보이는지를 표준화하고 새로운 라인이 몸에 추가 될 때 오류가 발생할 가능성을 줄입니다.
- #### 3.1.if, elseif, else
+ ##### if, elseif, else
   * if구조는 다음과 같다. 괄호, 공백 및 중괄호의 배치에 유의하십시오. 그 else와 elseif이전 몸 닫는 중괄호 동일한 행에있다.
+  * 모든 제어 키워드가 단일 단어처럼 보이도록 elseif 대신 else if라고 규정하는게 좋습니다.
   
   예제 : 
   ```php
 <?php
 if ($expr1) {
     // if body
-} elseif ($expr2) {
+} else if ($expr2) {
     // elseif body
 } else {
     // else body;
 }
 ```
-모든 제어 키워드가 단일 단어처럼 보이도록 elseif 대신 else if라고 규정하는게 좋습니다.
- #### 3.2.switch, case
+
+
+ ##### switch, case
   * 스위치 구조는 다음과 같습니다. 괄호, 공백 및 중괄호의 배치에 유의하십시오. case 문은 스위치에서 한 번 들여 쓰기되어야하며, break 키워드 (또는 다른 종료 키워드)는 사례 본문과 동일한 수준에서 들여 쓰기되어야합니다 (MUST). 비어 있지 않은 케이스 본문에서 fall-through가 의도적 일 때 // break와 같은 코멘트가 있어야합니다.
 
 예제:
@@ -460,7 +387,7 @@ switch ($expr) {
         break;
 }
 ```
- #### 3.3.while, do while
+ ##### while문, do while문
   * while문은 다음과 같다. 괄호, 공백 및 중괄호의 배치에 유의하십시오.
   
   예제:
@@ -479,7 +406,7 @@ do {
     // structure body;
 } while ($expr);
   ```
- #### 3.4.for
+ ##### for문
   * for문 은 다음과 같습니다. 괄호, 공백 및 중괄호의 배치에 유의하십시오.
   ```php
   <?php
@@ -487,7 +414,7 @@ for ($i = 0; $i < 10; $i++) {
     // for body
 }
   ```
- #### 3.5.foreach
+ ##### foreach
   * foreach문 은 다음과 같습니다. 괄호, 공백 및 중괄호의 배치에 유의하십시오.
   ```php
   <?php
@@ -495,7 +422,7 @@ foreach ($iterable as $key => $value) {
     // foreach body
 }
   ```
- #### 3.6.try, catch
+ ##### try, catch
   * try catch 문은 다음과 같습니다. 괄호, 공백 및 중괄호의 배치에 유의하십시오.
   ```php
   <?php
@@ -507,7 +434,7 @@ try {
     // catch body
 }
   ```
-### 4.Closures
+#### 4.Closures
  클로저는 function 구문 뒤의 공백과 use 구문 앞뒤 공백으로 선언해야합니다 (필수사항). 여는 중괄호는 반드시 같은 줄에 있어야하며 닫는 중괄호는 반드시 그 다음 줄에 있어야합니다. 인수 목록이나 변수 목록의 여는 괄호 다음에 공백이 있어서는 안되며 인수 목록이나 변수 목록의 닫는 괄호 앞에 공백이 있어서는 안됩니다. 인수 목록과 변수 목록에는 각 쉼표 앞에 공백이 있어서는 안되며 각 쉼표 뒤에 하나의 공백이 있어야합니다. 기본값을 가진 클로저 인수는 인수 목록의 끝에 와야합니다 (필수).
 
 클로저 선언은 다음과 같습니다. 괄호, 쉼표, 공백 및 중괄호의 배치에 유의하십시오.
@@ -526,7 +453,7 @@ $closureWithArgsAndVars = function ($arg1, $arg2) use ($var1, $var2) {
 
 끝리스트 (인수 또는 변수의 여부)가 여러 줄로 나뉘어 질 때 닫는 괄호와 여는 중괄호는 한 줄의 공백을 사용하여 각각의 줄에 함께 있어야합니다 (MUST).
 
-다음은 인수 목록이 있거나없는 클로저의 예와 여러 줄에 걸쳐있는 변수 목록입니다.
+다음은 인수 목록이 있거나 없는 클로저의 예와 여러 줄에 걸쳐있는 변수 목록입니다.
 ```php
 <?php
 $longArgs_noVars = function (
@@ -584,14 +511,7 @@ $foo->bar(
     $arg3
 );
 ```
-### 5.Conclusion
- * 전역 변수 및 전역 상수 선언
- * 함수 선언
- * 운영자 및 과제
- * 라인 간 정렬
- * 주석 및 문서 블록
- * 클래스 이름 접두사 및 접미사
- * 모범 사례
+
  
 [🔝 목차로 돌아가기](#contents) 
 ### **PSR-3(Basic Coding Standard)**
