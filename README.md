@@ -46,6 +46,8 @@
 
 [또 다른 좋은 사례](#또-다른-좋은-사례)
 
+## PHP
+
 [🔝 목차로 돌아가기](#contents)
 ### **기본 코딩 표준 PSR-1(Basic Coding Standard)**
 #### 파일은 태그 <?php와 <?=태그만 사용해야 합니다. (필수)
@@ -590,6 +592,8 @@ public function getFullNameShort()
     return $this->first_name[0] . '. ' . $this->last_name;
 }
 ```
+
+## Laravel
 
 [🔝 목차로 돌아가기](#contents)
 
