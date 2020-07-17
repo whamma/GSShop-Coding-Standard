@@ -185,8 +185,8 @@ class UserName
  * 한 줄에 하나 이상의 문장이 있어서는 안됩니다.
 #### 들여쓰기(Indenting)
  * 코드는 반드시 4 칸의 들여 쓰기를 사용해야하며, 들여 쓰기에는 탭을 사용하지 않아야합니다.
-##### 키워드(Keywords and True/False/Null)
- * PHP 키워드 는 소문자 여야합니다. PHP 상수 true,, false및 null은 소문자 여야합니다.
+#### 키워드(Keywords and True/False/Null)
+ * PHP 키워드 는 소문자 여야합니다. PHP 상수 true, false및 null은 소문자 여야합니다.
 #### 네임스페이스와 Use선언(Namespace and Use Declarations)
  * namespace선언 다음에 빈 줄이 하나 있어야합니다.
  * use선언 당 하나의 키워드가 있어야합니다.
@@ -212,7 +212,7 @@ class ClassName extends ParentClass implements \ArrayAccess, \Countable
     // constants, properties, methods
 }
 ```
-implements가 여러개 있을 때 여러 줄에 걸쳐 분할 될 수있다. 그렇게 할 때 목록의 첫 번째 항목은 다음 줄에 있어야하며 한 줄에 하나의 인터페이스만 있어야합니다.
+implements가 여러개 있을 때 여러 줄에 걸쳐 분할 될 수 있다. 그렇게 할 때 목록의 첫 번째 항목은 다음 줄에 있어야하며 한 줄에 하나의 인터페이스만 있어야합니다.
 
 예제 :
 
@@ -233,7 +233,7 @@ class ClassName extends ParentClass implements
 }
 ```
  ##### 속성(Properties)
-  * 모든 속성에서 가시성을 반드시 선언해야합니다. 
+  * 모든 속성에서 가시성(public, private, protected)을 반드시 선언해야합니다. 
   * var키워드는 속성을 선언하는 데 사용되어서는 안된다. 
   * 명령문마다 하나 이상의 속성이 선언되어서는 안됩니다. 
   * 프로퍼티 이름은 보호 된 프라이빗 가시성 또는 프라이빗 가시성을 나타 내기 위해 하나의 밑줄로 접두어를 사용해서는 안됩니다 (SHOULD NOT). 
@@ -252,7 +252,7 @@ class ClassName
 ```
 
  ##### 메소드(Methods)
-  * 모든 메소드에서 가시성을 선언해야합니다 (MUST). 
+  * 모든 메소드에서 가시성(public, private, protected)을 선언해야합니다 (MUST). 
   * 메소드 이름은 보호되거나 개인적인 가시성을 나타 내기 위해 하나의 밑줄로 접두어를해서는 안됩니다 (SHOULD NOT). 
   * 메서드 이름은 메서드 이름 다음에 공백으로 선언하면 안됩니다 (MUST NOT). 
   * 여는 중괄호는 반드시 다음 줄에 있어야하며 닫는 중괄호는 반드시 그 다음 줄에 있어야합니다. 
