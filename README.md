@@ -6,7 +6,7 @@
 
 [코딩 스타일 가이드 PSR-2(Coding Style Guide)](#코딩-스타일-가이드-psr-2coding-style-guide)
 
-[오토로더 PSR-4(Aytoloader)](#오토로더-psr-4autoloader)
+[오토로더 PSR-4(Atoloader)](#오토로더-psr-4autoloader)
 
 
 ## laravel
